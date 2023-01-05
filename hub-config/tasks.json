@@ -48,7 +48,81 @@
                 "minimum": 0
               }
             }
-          }
+          },
+          "target_metadata": [
+            {
+              "target_id": "inc death",
+              "target_name": "Incident deaths",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc death"
+              },
+              "description": "Weekly newly reported deaths due to COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "inc hosp",
+              "target_name": "Incident hospitalizations",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc hosp"
+              },
+              "description": "Weekly newly reported hospitalizations where the patient has COVID-19, as reported by hospital facilities and aggregated in the HHS Protect data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "inc case",
+              "target_name": "Incident cases",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc case"
+              },
+              "description": "Weekly newly reported cases of COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "cum death",
+              "target_name": "Cumulative deaths",
+              "target_units": "count",
+              "target_keys": {
+                "target": "cum death"
+              },
+              "description": "Cumulative reported deaths due to COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "cum hosp",
+              "target_name": "Cumulative hospitalizations",
+              "target_units": "count",
+              "target_keys": {
+                "target": "cum hosp"
+              },
+              "description": "Cumulative reported hospitalizations where the patient has COVID-19, as reported by hospital facilities and aggregated in the HHS Protect data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "cum case",
+              "target_name": "Cumulative cases",
+              "target_units": "count",
+              "target_keys": {
+                "target": "cum case"
+              },
+              "description": "Cumulative reported cases of COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            }
+          ]
         }
       ],
       "submissions_due": {
@@ -104,7 +178,81 @@
                 "minimum": 0
               }
             }
-          }
+          },
+          "target_metadata": [
+            {
+              "target_id": "inc death",
+              "target_name": "Incident deaths",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc death"
+              },
+              "description": "Weekly newly reported deaths due to COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "inc hosp",
+              "target_name": "Incident hospitalizations",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc hosp"
+              },
+              "description": "Weekly newly reported hospitalizations where the patient has COVID-19, as reported by hospital facilities and aggregated in the HHS Protect data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "inc case",
+              "target_name": "Incident cases",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc case"
+              },
+              "description": "Weekly newly reported cases of COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "cum death",
+              "target_name": "Cumulative deaths",
+              "target_units": "count",
+              "target_keys": {
+                "target": "cum death"
+              },
+              "description": "Cumulative reported deaths due to COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "cum hosp",
+              "target_name": "Cumulative hospitalizations",
+              "target_units": "count",
+              "target_keys": {
+                "target": "cum hosp"
+              },
+              "description": "Cumulative reported hospitalizations where the patient has COVID-19, as reported by hospital facilities and aggregated in the HHS Protect data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "cum case",
+              "target_name": "Cumulative cases",
+              "target_units": "count",
+              "target_keys": {
+                "target": "cum case"
+              },
+              "description": "Cumulative reported cases of COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            }
+          ]
         }
       ],
       "submissions_due": {
@@ -160,7 +308,93 @@
                 "minimum": 0
               }
             }
-          }
+          },
+          "target_metadata": [
+            {
+              "target_id": "inc death",
+              "target_name": "Incident deaths",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc death"
+              },
+              "description": "Weekly newly reported deaths due to COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "inc hosp",
+              "target_name": "Incident hospitalizations",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc hosp"
+              },
+              "description": "Weekly newly reported hospitalizations where the patient has COVID-19, as reported by hospital facilities and aggregated in the HHS Protect data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "inc case",
+              "target_name": "Incident cases",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc case"
+              },
+              "description": "Weekly newly reported cases of COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "inc inf",
+              "target_name": "Incident infections",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc inf"
+              },
+              "description": "Weekly new infections of COVID-19. This quantity is not directly observable or reported.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "cum death",
+              "target_name": "Cumulative deaths",
+              "target_units": "count",
+              "target_keys": {
+                "target": "cum death"
+              },
+              "description": "Cumulative reported deaths due to COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "cum hosp",
+              "target_name": "Cumulative hospitalizations",
+              "target_units": "count",
+              "target_keys": {
+                "target": "cum hosp"
+              },
+              "description": "Cumulative reported hospitalizations where the patient has COVID-19, as reported by hospital facilities and aggregated in the HHS Protect data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "cum case",
+              "target_name": "Cumulative cases",
+              "target_units": "count",
+              "target_keys": {
+                "target": "cum case"
+              },
+              "description": "Cumulative reported cases of COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            }
+          ]
         },
         {
           "task_ids": {
@@ -197,7 +431,21 @@
                 "maximum": 1
               }
             }
-          }
+          },
+          "target_metadata": [
+            {
+              "target_id": "prop X",
+              "target_name": "Proportion X",
+              "target_units": "proportion",
+              "target_keys": {
+                "target": "prop X"
+              },
+              "description": "",
+              "target_type": "continuous",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            }
+          ]
         }
       ],
       "submissions_due": {
@@ -247,7 +495,57 @@
                 "minimum": 0
               }
             }
-          }
+          },
+          "target_metadata": [
+            {
+              "target_id": "inc death",
+              "target_name": "Incident deaths",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc death"
+              },
+              "description": "Weekly newly reported deaths due to COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "inc hosp",
+              "target_name": "Incident hospitalizations",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc hosp"
+              },
+              "description": "Weekly newly reported hospitalizations where the patient has COVID-19, as reported by hospital facilities and aggregated in the HHS Protect data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "inc inf",
+              "target_name": "Incident infections",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc inf"
+              },
+              "description": "Weekly new infections of COVID-19. This quantity is not directly observable or reported.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            },
+            {
+              "target_id": "inc case",
+              "target_name": "Incident cases",
+              "target_units": "count",
+              "target_keys": {
+                "target": "inc case"
+              },
+              "description": "Weekly newly reported cases of COVID-19 as reported by state and local departments of public health and aggregated in the JHU-CSSE data collection system.",
+              "target_type": "discrete",
+              "is_step_ahead": true,
+              "time_unit": "week"
+            }
+          ]
         }
       ],
       "submissions_due": {
