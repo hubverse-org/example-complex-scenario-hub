@@ -2,6 +2,7 @@
   "rounds": [
     {
       "round_id": "2021-03-07",
+      "round_id_from_variable": false,
       "model_tasks": [
         {
           "task_ids": {
@@ -36,6 +37,7 @@
     },
     {
       "round_id": "2022-03-28",
+      "round_id_from_variable": false,
       "model_tasks": [
         {
           "task_ids": {
@@ -70,6 +72,7 @@
     },
     {
       "round_id": "2022-06-05",
+      "round_id_from_variable": false,
       "model_tasks": [
         {
           "task_ids": {
@@ -116,8 +119,8 @@
               }
             }
           }
-        }, 
-        {        
+        },
+        {
           "task_ids": {
             "origin_date": {
               "required": ["2022-06-05"],
@@ -162,6 +165,7 @@
     },
     {
       "round_id": "2022-05-22",
+      "round_id_from_variable": false,
       "model_tasks": [
         {
           "task_ids": {
@@ -199,7 +203,7 @@
               "value": {
                 "type": "integer",
                 "minimum": 0
-              } 
+              }
             }
           }
         }
