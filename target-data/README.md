@@ -8,10 +8,10 @@ In this repository, we use different examples files:
 ## US level target data (file name starting with `"US_"`)
 
 We use the daily reports containing COVID-19 cases and deaths data from the 
-[JHU CSSE group](https://coronavirus.jhu.edu/map.html) as the
-gold standard reference data for cases and deaths in the US. We will use
-the distribution of the JHU data as provided by the [COVIDcast Epidata
-API](https://cmu-delphi.github.io/delphi-epidata/api/covidcast-signals/jhu-csse.html)
+[JHU CSSE group](https://coronavirus.jhu.edu/map.html) as reference data for 
+cases and deaths in the US. We use the distribution of the JHU data as provided 
+by the 
+[COVIDcast Epidata API](https://cmu-delphi.github.io/delphi-epidata/api/covidcast-signals/jhu-csse.html)
 maintained by the [Delphi Research Group](https://delphi.cmu.edu/about/)
 at Carnegie Mellon University.
 
@@ -24,3 +24,10 @@ We will use the distribution of the HHS data as provided by the
 [COVIDcast Epidata API](https://cmu-delphi.github.io/delphi-epidata/api/covidcast-signals/hhs.html)
 maintained by the [Delphi Research Group](https://delphi.cmu.edu/about/)
 at Carnegie Mellon University
+
+## European country level target data (file name starting with `"euro_"`)
+
+We use the COVID-19 case and death incidence data from the 
+[European COVID-19 Forecast Hub](https://github.com/covid19-forecast-hub-europe/covid19-forecast-hub-europe/tree/main/data-truth) and from the 
+[JHU CSSE group](https://coronavirus.jhu.edu/map.html)
+
