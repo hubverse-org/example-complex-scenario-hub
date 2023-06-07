@@ -306,7 +306,7 @@
           "target_metadata": [
             {
               "target_id": "prop X",
-              "target_name": "Proportion X",
+              "target_name": "Proportion of variant X",
               "target_units": "proportion",
               "target_keys": {
                 "target": "prop X"
