@@ -106,7 +106,7 @@
               "target_keys": {
                 "target": "cum hosp"
               },
-              "description": "Cumulative reported hospitalizations where the patient has COVID-19, as reported by hospital facilities and aggregated in the HHS Protect data collection system.",
+              "description": "Cumulative reported hospitalizations where the patient has COVID-19, as reported by hospital facilities, starting at 0.",
               "target_type": "discrete",
               "is_step_ahead": true,
               "time_unit": "week"
@@ -248,7 +248,7 @@
               "target_keys": {
                 "target": "cum hosp"
               },
-              "description": "Cumulative reported hospitalizations where the patient has COVID-19, as reported by hospital facilities and aggregated in the HHS Protect data collection system.",
+              "description": "Cumulative reported hospitalizations where the patient has COVID-19, as reported by hospital facilities, starting at 0.",
               "target_type": "discrete",
               "is_step_ahead": true,
               "time_unit": "week"
