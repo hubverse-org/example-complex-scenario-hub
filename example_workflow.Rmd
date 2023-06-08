@@ -1,0 +1,183 @@
+---
+title: "Workflow"
+output: html_document
+date: "2023-06-08"
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Workflow example
+
+#### Quick checklist summary
+
+1. Setup a repository
+
+    a. create a repository from template
+    b. add the configuration files
+    c. validate the configuration files
+  
+  
+2. Add Submission files 
+
+3. Load the data
+
+4. Calculate the ensembles
+
+5. Plot the output
+
+##### Library and System setup:
+
+To use full administrator functionality please ensure you install full list of package dependencies including Suggests with:
+```{r install, eval=FALSE}
+remotes::install_github("Infectious-Disease-Modeling-Hubs/hubUtils",
+                        dependencies = TRUE)
+remotes::install_github("Infectious-Disease-Modeling-Hubs/hubEnsembles")
+```
+
+```{r setup}
+library(hubUtils)
+library(hubEnsembles)
+library(magrittr)
+```
+
+#### Setup a repository
+
+See vignette 
+["hub-setup"](https://github.com/Infectious-Disease-Modeling-Hubs/hubUtils/blob/main/vignettes/articles/hub-setup.Rmd) 
+on 
+[hubUtils package](https://github.com/Infectious-Disease-Modeling-Hubs/hubUtils/tree/main)
+
+  
+##### Load the submission files
+
+```{r hub_con}
+hub_path <- getwd()
+hub_con <- connect_hub(hub_path)
+hub_con
+
+# Round 1 for example
+round1 <- hub_con %>% 
+  dplyr::filter(origin_date == as.Date("2021-03-07")) %>% 
+  dplyr::collect() %>% 
+  dplyr::select(-age_group)
+```
+
+##### Calculate ensemble
+
+```{r hub_ens}
+# Mean ensemble
+round1_ens <- hubEnsembles::simple_ensemble(round1)
+head(round1_ens)
+
+## Mean weight ensemble
+#weights <- data.frame(
+#  "model_id" = c("hubcomp_examp", "HUBuni-simexamp"),
+#  "weights" = c(1,0)
+#)
+#round1_ens <- hubEnsembles::simple_ensemble(round1, weights = weights, 
+#                                            weights_col_name = "weights")
+#head(round1_ens)
+#
+## Median ensemble
+#round1_ens <- hubEnsembles::simple_ensemble(round1, agg_fun = "median")
+#head(round1_ens)
+#
+## Median weight ensemble
+#weights <- data.frame(
+#  "model_id" = c("hubcomp_examp", "HUBuni-simexamp"),
+#  "weights" = c(1,0)
+#)
+#round1_ens <- hubEnsembles::simple_ensemble(
+#  round1, weights = weights, weights_col_name = "weights", agg_fun = "median")
+#head(round1_ens)
+#
+## Rename output model
+#round1_ens <- hubEnsembles::simple_ensemble(
+#  round1, agg_fun = "median", model_id = "comp_ensemble")
+#head(round1_ens)
+#
+## Ensemble all scenarios
+#col_task_id <- c("origin_date", "location", "target", "horizon")
+#round1_ens <- hubEnsembles::simple_ensemble(
+#  round1, agg_fun = "median", model_id = "comp_ensemble", 
+#  task_id_cols = col_task_id)
+#head(round1_ens)
+#
+## Rename output type id column
+#round1_rename <- dplyr::rename(round1, type = output_type, 
+#                               type_id = output_type_id)
+#round1_ens <- hubEnsembles::simple_ensemble(
+#  round1_rename, agg_fun = "median", model_id = "comp_ensemble", 
+#  task_id_cols = col_task_id, output_type_col = "type", 
+#  output_type_id_col = "type_id")
+#head(round1_ens)
+#
+## Sum ensemble
+#round1_ens <- hubEnsembles::simple_ensemble(round1, agg_fun = "sum")
+#head(round1_ens)
+#
+```
+
+
+##### Plot
+
+```{r plot_setup}
+library(plotly)
+```
+
+###### Data processing:
+
+Projection:
+
+```{r plot_process}
+plot_round1 <- dplyr::filter(round1, scenario_id == "A-2021-03-05", location == "US", target == "inc case", output_type_id %in% c(0.975, 0.025, 0.5))
+plot_round_ens <- hubEnsembles::simple_ensemble(plot_round1, agg_fun = "median")
+plot_df <- rbind(plot_round1, plot_round_ens)
+plot_df <- dplyr::select(plot_df, origin_date, horizon, output_type_id, value, model_id)
+plot_df <- dplyr::mutate(plot_df, target_date = as.Date(origin_date) + (horizon * 7) - 1)
+plot_df <- dplyr::select(plot_df, model_id, output_type_id, target_date, value)
+head(plot_df)
+```
+
+Truth Data:
+
+```{r truth_data_process}
+truth_data <- read.csv("target-data/US_inc_case.csv")
+truth_data <- dplyr::filter(truth_data, location == "US", time_idx < min(plot_df$target_date))
+```
+
+###### Plot: 
+
+```{r plot_function}
+basic_plot_function <- function(plot_df, truth_df, plain_line = 0.5, ribbon = c(0.975, 0.025)) {
+  
+  plain_df <- dplyr::filter(plot_df, output_type_id == plain_line) 
+  
+  ribbon_df <- dplyr::filter(plot_df, output_type_id %in% ribbon) %>%
+    dplyr::mutate(output_type_id = ifelse(output_type_id == min(ribbon), 
+                                          "min", "max")) %>% 
+    tidyr::pivot_wider(names_from = output_type_id, values_from = value)
+  
+  plot_model <- plot_ly(height = 1050, colors = scales::hue_pal()(50)) %>% 
+      add_trace(data = truth_df, x = ~time_idx, y = ~value, type = "scatter",
+                mode = "lines+markers", line = list(color = "#6e6e6e"),
+                hoverinfo = "text", name = "ground truth", legendgroup = "group1",
+                hovertext = paste("Date: ", truth_df$time_value, "<br>", 
+                                  "Ground truth: ", 
+                                  format(truth_df$value, big.mark = ","), 
+                             sep = ""), 
+                marker = list(color = "#6e6e6e", size = 7))  %>% 
+    add_lines(data = plain_df, x = ~target_date, y = ~value, 
+              color = ~model_id) %>% 
+    add_ribbons(data = ribbon_df, x = ~target_date, ymin = ~min, 
+                ymax = ~max, color = ~model_id, opacity = 0.25, 
+                line = list(width = 0), showlegend = FALSE)
+}
+```
+
+```{r}
+plot <- basic_plot_function(plot_df, truth_data)
+plot
+```
