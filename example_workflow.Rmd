@@ -4,8 +4,13 @@ output: html_document
 date: "2023-06-08"
 ---
 
-```{r, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r, include = FALSE}
+knitr::knit_hooks$set(margin = function(before,options,envir) {
+if(before) par(mgp=c(1,0.35,0),bty="n",plt=c(0,.99,.13,.99), mar = c(2,2,3,2), xpd = TRUE) else NULL })
+
+knitr::opts_chunk$set(margin=T,prompt=T,comment="",collapse=T,cache=F, bty="n",
+dev.args=list(pointsize=11),fig.height= 4,
+fig.width=6.24725,fig.retina=2,fig.align="center")
 ```
 
 ## Workflow example
@@ -121,13 +126,13 @@ head(round1_ens)
 ```
 
 
-##### Plot
+#### Plot
 
-```{r plot_setup}
+```{r plot_setup, message= FALSE}
 library(plotly)
 ```
 
-###### Data processing:
+##### Data processing:
 
 Projection:
 
@@ -160,15 +165,20 @@ basic_plot_function <- function(plot_df, truth_df, plain_line = 0.5, ribbon = c(
                                           "min", "max")) %>% 
     tidyr::pivot_wider(names_from = output_type_id, values_from = value)
   
-  plot_model <- plot_ly(height = 1050, colors = scales::hue_pal()(50)) %>% 
+  plot_model <- plot_ly(height = 1050, colors = scales::hue_pal()(50)) 
+  
+  if (!is.null(truth_df)) {
+    plot_model <- plot_model %>% 
       add_trace(data = truth_df, x = ~time_idx, y = ~value, type = "scatter",
                 mode = "lines+markers", line = list(color = "#6e6e6e"),
-                hoverinfo = "text", name = "ground truth", legendgroup = "group1",
+                hoverinfo = "text", name = "ground truth",
                 hovertext = paste("Date: ", truth_df$time_value, "<br>", 
                                   "Ground truth: ", 
                                   format(truth_df$value, big.mark = ","), 
                              sep = ""), 
-                marker = list(color = "#6e6e6e", size = 7))  %>% 
+                marker = list(color = "#6e6e6e", size = 7))
+  }
+  plot_model <- plot_model %>% 
     add_lines(data = plain_df, x = ~target_date, y = ~value, 
               color = ~model_id) %>% 
     add_ribbons(data = ribbon_df, x = ~target_date, ymin = ~min, 
@@ -177,7 +187,7 @@ basic_plot_function <- function(plot_df, truth_df, plain_line = 0.5, ribbon = c(
 }
 ```
 
-```{r}
+```{r, warning=FALSE}
 plot <- basic_plot_function(plot_df, truth_data)
 plot
 ```
