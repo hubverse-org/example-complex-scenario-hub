@@ -6,11 +6,11 @@ date: "2023-06-08"
 
 ```{r, include = FALSE}
 knitr::knit_hooks$set(margin = function(before,options,envir) {
-if(before) par(mgp=c(1,0.35,0),bty="n",plt=c(0,.99,.13,.99), mar = c(2,2,3,2), xpd = TRUE) else NULL })
+if(before) par(mgp=c(1,0.35,0.1),bty="n",plt=c(0,.90,.13,.90), mar = c(2,2,2,2), xpd = TRUE) else NULL })
 
 knitr::opts_chunk$set(margin=T,prompt=T,comment="",collapse=T,cache=F, bty="n",
-dev.args=list(pointsize=11),fig.height= 4,
-fig.width=10,fig.retina=2,fig.align="center")
+dev.args=list(pointsize=11),fig.height= 2,
+fig.width=10,fig.retina=1,fig.align="center")
 ```
 
 ## Workflow example
@@ -47,6 +47,10 @@ library(hubEnsembles)
 library(magrittr)
 ```
 
+```{r prerequisite}
+hub_path <- getwd()
+```
+
 #### Setup a repository
 
 See vignette 
@@ -54,19 +58,30 @@ See vignette
 on 
 [hubUtils package](https://github.com/Infectious-Disease-Modeling-Hubs/hubUtils/tree/main)
 
+Create the config files: `hub-config/admin.json` and `hub_config/tasks.json` and validate them:
+
+```{r config_valid}
+hubUtils::validate_config(hub_path)
+hubUtils::validate_config(hub_path, config = "admin")
+```
+  
+or 
+
+```{r}
+validate_hub_config(hub_path)
+```
   
 ##### Load the submission files
 
 ```{r hub_con}
-hub_path <- getwd()
 hub_con <- connect_hub(hub_path)
 hub_con
 
 # Round 1 for example
 round1 <- hub_con %>% 
   dplyr::filter(origin_date == as.Date("2021-03-07")) %>% 
-  dplyr::collect() %>% 
-  dplyr::select(-age_group)
+  dplyr::collect()
+round1
 ```
 
 ##### Calculate ensemble
@@ -81,7 +96,7 @@ head(round1_ens)
 #  "model_id" = c("hubcomp_examp", "HUBuni-simexamp"),
 #  "weights" = c(1,0)
 #)
-#round1_ens <- hubEnsembles::simple_ensemble(round1, weights = weights, 
+#round1_ens <- hubEnsembles::simple_ensemble(round1, weights = weights,
 #                                            weights_col_name = "weights")
 #head(round1_ens)
 #
@@ -187,7 +202,8 @@ truth_data <- dplyr::filter(truth_data, location == "US", time_idx < min(plot_df
 #' @param ens_name a `character` string of a model name, if not NULL, will be 
 #' use to change the color for the model name, associated with the parameter 
 #' `ens_color`(both parameter need to be provided)
-basic_plot_function <- function(plot_df, truth_df, plain_line = 0.5, 
+basic_plot_function <- function(plot_df, truth_df, 
+                                plain_line = 0.5, 
                                 ribbon = c(0.975, 0.025), title = NULL,
                                 ens_color = NULL, ens_name = NULL) {
   
@@ -199,7 +215,6 @@ basic_plot_function <- function(plot_df, truth_df, plain_line = 0.5,
   } else {
     all_ens <- NULL
   }
-  
   all_plot <- plot_prep_data(plot_df, plain_line, ribbon)
   
   # Plot
@@ -247,5 +262,6 @@ plot <- basic_plot_function(plot_df, truth_data,
                             title = "Projected Incident Cases for the US (scenario A; Round 1)",
                             ens_color = "black", ens_name = "hub-ensemble")
 plot
+
 ```
 
