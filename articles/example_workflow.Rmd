@@ -1,6 +1,5 @@
 ---
 title: "Workflow Example"
-output: html_document
 date: "2023-11-14"
 ---
 
@@ -9,9 +8,9 @@ knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 knitr::knit_hooks$set(margin = function(before,options,envir) {
 if(before) par(mgp=c(1,0.35,0.1),bty="n",plt=c(0,.90,.13,.90), mar = c(2,2,2,2), xpd = TRUE) else NULL })
 
-knitr::opts_chunk$set(margin=T,prompt=T,comment="",collapse=F,cache=F, bty="n",
-dev.args=list(pointsize=11),fig.height= 4,
-fig.width=10,fig.retina=1,fig.align="center")
+knitr::opts_chunk$set(margin = T,prompt = T,comment = "", collapse=F,cache=F, bty="n",
+                      dev.args=list(pointsize=11),fig.height= 4,
+                      fig.width=10,fig.retina=1,fig.align="center")
 ```
 
 ## Quick checklist summary
@@ -129,13 +128,13 @@ truth_data <- dplyr::filter(truth_data, location == "US", time_idx < min(plot_df
 
 ```{r simple_plot, warning=FALSE}
 plot_A_inccase <- dplyr::filter(plot_df, scenario_id == "A-2021-03-05", location == "US", target == "inc case")
-plot <- hubVis::plot_step_ahead_model_output(plot_A_inccase, truth_data)
+plot <- hubVis::plot_step_ahead_model_output(plot_A_inccase, truth_data, interactive = FALSE)
 plot
 ```
 
 ```{r facet_plot, warning=FALSE}
 plot_inccase <- dplyr::filter(plot_df, location == "US", target == "inc case")
-plot <- hubVis::plot_step_ahead_model_output(plot_inccase, truth_data, facet = "scenario_id")
+plot <- hubVis::plot_step_ahead_model_output(plot_inccase, truth_data, facet = "scenario_id", interactive = FALSE)
 plot
 ```
 
