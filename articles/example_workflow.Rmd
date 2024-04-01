@@ -1,16 +1,26 @@
 ---
 title: "Workflow Example"
 date: "2023-11-14"
+output: pdf_document
 ---
 
 ```{r, include = FALSE}
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
-knitr::knit_hooks$set(margin = function(before,options,envir) {
-if(before) par(mgp=c(1,0.35,0.1),bty="n",plt=c(0,.90,.13,.90), mar = c(2,2,2,2), xpd = TRUE) else NULL })
+knitr::knit_hooks$set(margin =
+                        function(before, options, envir) {
+                          if (before) {
+                            par(mgp = c(1, 0.35, 0.1), bty = "n",
+                                plt = c(0, .90, .13, .90),
+                                mar = c(2, 2, 2, 2), xpd = TRUE)
+                          } else {
+                            NULL
+                          }
+                        })
 
-knitr::opts_chunk$set(margin = T,prompt = T,comment = "", collapse=F,cache=F, bty="n",
-                      dev.args=list(pointsize=11),fig.height= 4,
-                      fig.width=10,fig.retina=1,fig.align="center")
+knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "",
+                      collapse = FALSE, cache = FALSE, bty = "n",
+                      dev.args = list(pointsize = 11), fig.height = 4,
+                      fig.width = 10, fig.retina = 1, fig.align = "center")
 ```
 
 ## Quick checklist summary
@@ -32,19 +42,22 @@ knitr::opts_chunk$set(margin = T,prompt = T,comment = "", collapse=F,cache=F, bt
 
 ## Library and System setup:
 
-To use full administrator functionality please ensure you install full list of package dependencies including Suggests with:
+To use full administrator functionality please ensure you install full list of
+package dependencies including Suggests with:
 ```{r install, eval=FALSE}
-remotes::install_github("Infectious-Disease-Modeling-Hubs/hubUtils",
-                        dependencies = TRUE)
+remotes::install_github("Infectious-Disease-Modeling-Hubs/hubAdmin")
+remotes::install_github("Infectious-Disease-Modeling-Hubs/hubData")
 remotes::install_github("Infectious-Disease-Modeling-Hubs/hubEnsembles")
 remotes::install_github("Infectious-Disease-Modeling-Hubs/hubVis")
 ```
 
 ```{r setup, message=FALSE}
-library(hubUtils)
+library(hubAdmin)
+library(hubData)
 library(hubEnsembles)
 library(hubVis)
 
+library(arrow)
 library(dplyr)
 ```
 
@@ -63,25 +76,25 @@ on
 Create the config files: `hub-config/admin.json` and `hub_config/tasks.json` and validate them:
 
 ```{r config_valid}
-hubUtils::validate_config(hub_path)
-hubUtils::validate_config(hub_path, config = "admin")
+hubAdmin::validate_config(hub_path)
+hubAdmin::validate_config(hub_path, config = "admin")
 ```
   
 or 
 
 ```{r}
-validate_hub_config(hub_path)
+hubAdmin::validate_hub_config(hub_path)
 ```
   
 ## Load the submission files
 
 ```{r hub_con}
-hub_con <- connect_hub(hub_path)
+hub_con <- hubData::connect_hub(hub_path)
 hub_con
 
 # Round 1 for example
-round1 <- hub_con %>% 
-  dplyr::filter(origin_date == as.Date("2021-03-07")) %>% 
+round1 <- hub_con %>%
+  dplyr::filter(origin_date == as.Date("2021-03-07")) %>%
   dplyr::collect()
 round1
 ```
@@ -114,27 +127,36 @@ Projection:
 # Aggregate the data (projection + ensemble)
 plot_df <- rbind(round1, round1_ens)
 # Add the target_data column for x-axis
-plot_df <- dplyr::mutate(plot_df, target_date = as.Date(origin_date) + (horizon * 7) - 1)
+plot_df <- dplyr::mutate(plot_df, target_date = as.Date(origin_date) +
+                           (horizon * 7) - 1)
 ```
 
-Truth Data:
+Target Data:
 
-```{r truth_data_process}
-truth_data <- read.csv("target-data/US_inc_case.csv")
-truth_data <- dplyr::filter(truth_data, location == "US", time_idx < min(plot_df$target_date))
+```{r target_data_process}
+target_data <- arrow::read_parquet("target-data/time-series.parquet")
+target_data <- dplyr::filter(target_data, location == "US",
+                             target == "inc case",
+                             date < min(plot_df$target_date))
 ```
 
 ###### Plot: 
 
 ```{r simple_plot, warning=FALSE}
-plot_A_inccase <- dplyr::filter(plot_df, scenario_id == "A-2021-03-05", location == "US", target == "inc case")
-plot <- hubVis::plot_step_ahead_model_output(plot_A_inccase, truth_data, interactive = FALSE)
+plot_a_inccase <- dplyr::filter(plot_df, scenario_id == "A-2021-03-05",
+                                location == "US", target == "inc case")
+plot <- hubVis::plot_step_ahead_model_output(plot_a_inccase, target_data,
+                                             interactive = FALSE, 
+                                             x_target_col_name = "date")
 plot
 ```
 
 ```{r facet_plot, warning=FALSE}
 plot_inccase <- dplyr::filter(plot_df, location == "US", target == "inc case")
-plot <- hubVis::plot_step_ahead_model_output(plot_inccase, truth_data, facet = "scenario_id", interactive = FALSE)
+plot <- hubVis::plot_step_ahead_model_output(plot_inccase, target_data,
+                                             facet = "scenario_id",
+                                             interactive = FALSE, 
+                                             x_target_col_name = "date")
 plot
 ```
 
