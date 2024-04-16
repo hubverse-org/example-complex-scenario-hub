@@ -69,9 +69,9 @@ hub_path <- getwd()
 ## Setup a repository
 
 See vignette 
-["hub-setup"](https://github.com/Infectious-Disease-Modeling-Hubs/hubUtils/blob/main/vignettes/articles/hub-setup.Rmd) 
-on 
-[hubUtils package](https://infectious-disease-modeling-hubs.github.io/hubUtils/index.html)
+["hub-setup"](https://github.com/Infectious-Disease-Modeling-Hubs/hubAdmin/blob/main/vignettes/articles/hub-setup.Rmd) 
+in the 
+[hubAdmin package](https://infectious-disease-modeling-hubs.github.io/hubAdmin/index.html)
 
 Create the config files: `hub-config/admin.json` and `hub_config/tasks.json` and validate them:
 
@@ -126,7 +126,7 @@ Projection:
 ```{r plot_process}
 # Aggregate the data (projection + ensemble)
 plot_df <- rbind(round1, round1_ens)
-# Add the target_data column for x-axis
+# Add the target_date column for x-axis
 plot_df <- dplyr::mutate(plot_df, target_date = as.Date(origin_date) +
                            (horizon * 7) - 1)
 ```
