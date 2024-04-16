@@ -96,7 +96,7 @@ hub_con
 round1 <- hub_con %>%
   dplyr::filter(origin_date == as.Date("2021-03-07")) %>%
   dplyr::collect()
-round1
+head(round1)
 ```
 
 ## Calculate ensemble
@@ -129,6 +129,8 @@ plot_df <- rbind(round1, round1_ens)
 # Add the target_data column for x-axis
 plot_df <- dplyr::mutate(plot_df, target_date = as.Date(origin_date) +
                            (horizon * 7) - 1)
+# Remove empty column to avoid issue
+plot_df <- plot_df[!sapply(plot_df, function(k) all(is.na(k)))]
 ```
 
 Target Data:
@@ -146,8 +148,7 @@ target_data <- dplyr::filter(target_data, location == "US",
 plot_a_inccase <- dplyr::filter(plot_df, scenario_id == "A-2021-03-05",
                                 location == "US", target == "inc case")
 plot <- hubVis::plot_step_ahead_model_output(plot_a_inccase, target_data,
-                                             interactive = FALSE, 
-                                             x_target_col_name = "date")
+                                             interactive = FALSE)
 plot
 ```
 
@@ -155,8 +156,7 @@ plot
 plot_inccase <- dplyr::filter(plot_df, location == "US", target == "inc case")
 plot <- hubVis::plot_step_ahead_model_output(plot_inccase, target_data,
                                              facet = "scenario_id",
-                                             interactive = FALSE, 
-                                             x_target_col_name = "date")
+                                             interactive = FALSE)
 plot
 ```
 
