@@ -374,10 +374,10 @@ display: none;
 <h2>Library and System setup:</h2>
 <p>To use full administrator functionality please ensure you install
 full list of package dependencies including Suggests with:</p>
-<pre class="r"><code>&gt; remotes::install_github(&quot;hubverse-org/hubAdmin&quot;)
-&gt; remotes::install_github(&quot;hubverse-org/hubData&quot;)
-&gt; remotes::install_github(&quot;hubverse-org/hubEnsembles&quot;)
-&gt; remotes::install_github(&quot;hubverse-org/hubVis&quot;)</code></pre>
+<pre class="r"><code>&gt; remotes::install_github(&quot;Infectious-Disease-Modeling-Hubs/hubAdmin&quot;)
+&gt; remotes::install_github(&quot;Infectious-Disease-Modeling-Hubs/hubData&quot;)
+&gt; remotes::install_github(&quot;Infectious-Disease-Modeling-Hubs/hubEnsembles&quot;)
+&gt; remotes::install_github(&quot;Infectious-Disease-Modeling-Hubs/hubVis&quot;)</code></pre>
 <pre class="r"><code>&gt; library(hubAdmin)
 &gt; library(hubData)
 &gt; library(hubEnsembles)
@@ -390,30 +390,30 @@ full list of package dependencies including Suggests with:</p>
 </div>
 <div id="setup-a-repository" class="section level2">
 <h2>Setup a repository</h2>
-<p>See vignette <a href="https://github.com/hubverse-org/hubUtils/blob/main/vignettes/articles/hub-setup.Rmd">“hub-setup”</a>
-on <a href="https://hubverse-org.github.io/hubUtils/index.html">hubUtils
+<p>See vignette <a href="https://github.com/Infectious-Disease-Modeling-Hubs/hubUtils/blob/main/vignettes/articles/hub-setup.Rmd">“hub-setup”</a>
+on <a href="https://infectious-disease-modeling-hubs.github.io/hubUtils/index.html">hubUtils
 package</a></p>
 <p>Create the config files: <code>hub-config/admin.json</code> and
 <code>hub_config/tasks.json</code> and validate them:</p>
 <pre class="r"><code>&gt; hubAdmin::validate_config(hub_path)</code></pre>
 <pre><code>Loading required namespace: jsonvalidate</code></pre>
-<pre><code>✔ Successfully validated config file &#39;/Users/contamin/Documents/SMH/hub_infrastructure/example-complex-scenario-hub/hub-config/tasks.json&#39; against schema &lt;https://raw.githubusercontent.com/hubverse-org/schemas/main/v2.0.0/tasks-schema.json&gt;</code></pre>
+<pre><code>✔ Successfully validated config file &#39;/Users/contamin/Documents/SMH/hub_infrastructure/example-complex-scenario-hub/hub-config/tasks.json&#39; against schema &lt;https://raw.githubusercontent.com/Infectious-Disease-Modeling-Hubs/schemas/main/v2.0.0/tasks-schema.json&gt;</code></pre>
 <pre><code>[1] TRUE
 attr(,&quot;config_path&quot;)
 /Users/contamin/Documents/SMH/hub_infrastructure/example-complex-scenario-hub/hub-config/tasks.json
 attr(,&quot;schema_version&quot;)
 [1] &quot;v2.0.0&quot;
 attr(,&quot;schema_url&quot;)
-https://raw.githubusercontent.com/hubverse-org/schemas/main/v2.0.0/tasks-schema.json</code></pre>
+https://raw.githubusercontent.com/Infectious-Disease-Modeling-Hubs/schemas/main/v2.0.0/tasks-schema.json</code></pre>
 <pre class="r"><code>&gt; hubAdmin::validate_config(hub_path, config = &quot;admin&quot;)</code></pre>
-<pre><code>✔ Successfully validated config file &#39;/Users/contamin/Documents/SMH/hub_infrastructure/example-complex-scenario-hub/hub-config/admin.json&#39; against schema &lt;https://raw.githubusercontent.com/hubverse-org/schemas/main/v2.0.0/admin-schema.json&gt;</code></pre>
+<pre><code>✔ Successfully validated config file &#39;/Users/contamin/Documents/SMH/hub_infrastructure/example-complex-scenario-hub/hub-config/admin.json&#39; against schema &lt;https://raw.githubusercontent.com/Infectious-Disease-Modeling-Hubs/schemas/main/v2.0.0/admin-schema.json&gt;</code></pre>
 <pre><code>[1] TRUE
 attr(,&quot;config_path&quot;)
 /Users/contamin/Documents/SMH/hub_infrastructure/example-complex-scenario-hub/hub-config/admin.json
 attr(,&quot;schema_version&quot;)
 [1] &quot;v2.0.0&quot;
 attr(,&quot;schema_url&quot;)
-https://raw.githubusercontent.com/hubverse-org/schemas/main/v2.0.0/admin-schema.json</code></pre>
+https://raw.githubusercontent.com/Infectious-Disease-Modeling-Hubs/schemas/main/v2.0.0/admin-schema.json</code></pre>
 <p>or</p>
 <pre class="r"><code>&gt; hubAdmin::validate_hub_config(hub_path)</code></pre>
 <pre><code>✔ Hub correctly configured! 
@@ -425,7 +425,7 @@ attr(,&quot;config_path&quot;)
 attr(,&quot;schema_version&quot;)
 [1] &quot;v2.0.0&quot;
 attr(,&quot;schema_url&quot;)
-https://raw.githubusercontent.com/hubverse-org/schemas/main/v2.0.0/tasks-schema.json
+https://raw.githubusercontent.com/Infectious-Disease-Modeling-Hubs/schemas/main/v2.0.0/tasks-schema.json
 
 $admin
 [1] TRUE
@@ -434,7 +434,7 @@ attr(,&quot;config_path&quot;)
 attr(,&quot;schema_version&quot;)
 [1] &quot;v2.0.0&quot;
 attr(,&quot;schema_url&quot;)
-https://raw.githubusercontent.com/hubverse-org/schemas/main/v2.0.0/admin-schema.json
+https://raw.githubusercontent.com/Infectious-Disease-Modeling-Hubs/schemas/main/v2.0.0/admin-schema.json
 
 $`model-metadata-schema`
 [1] TRUE
@@ -446,7 +446,7 @@ attr(,&quot;config_dir&quot;)
 attr(,&quot;schema_version&quot;)
 [1] &quot;v2.0.0&quot;
 attr(,&quot;schema_url&quot;)
-[1] &quot;https://github.com/hubverse-org/schemas/tree/main/v2.0.0&quot;</code></pre>
+[1] &quot;https://github.com/Infectious-Disease-Modeling-Hubs/schemas/tree/main/v2.0.0&quot;</code></pre>
 </div>
 <div id="load-the-submission-files" class="section level2">
 <h2>Load the submission files</h2>
@@ -497,7 +497,7 @@ target_date: date32[day]</code></pre>
 </div>
 <div id="calculate-ensemble" class="section level2">
 <h2>Calculate ensemble</h2>
-<p>See <a href="https://hubverse-org.github.io/hubEnsembles/index.html">hubEnsembles
+<p>See <a href="https://infectious-disease-modeling-hubs.github.io/hubEnsembles/index.html">hubEnsembles
 package</a> for more information</p>
 <pre class="r"><code>&gt; # Mean ensemble
 &gt; round1_ens &lt;- hubEnsembles::simple_ensemble(round1)
@@ -515,7 +515,7 @@ package</a> for more information</p>
 </div>
 <div id="plot" class="section level2">
 <h2>Plot</h2>
-<p>See <a href="https://hubverse-org.github.io/hubVis/index.html">hubVis
+<p>See <a href="https://infectious-disease-modeling-hubs.github.io/hubVis/index.html">hubVis
 package</a> for more information</p>
 <div id="data-processing" class="section level5">
 <h5>Data processing:</h5>
