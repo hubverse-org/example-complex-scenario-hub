@@ -1,20 +1,16 @@
 {
-    "schema_version":"https://raw.githubusercontent.com/hubverse-org/schemas/main/v2.0.0/admin-schema.json",
+    "schema_version":"https://raw.githubusercontent.com/hubverse-org/schemas/main/v3.0.0/admin-schema.json",
     "name": "Complex Scenario Hub",
     "maintainer": "Consortium of Infectious Disease Modeling Hubs",
     "contact": {
         "name": "Joe Bloggs",
         "email": "j.bloggs@cidmh.com"
     },
-    "repository_host": "GitHub",
-    "repository_url": "https://github.com/hubverse-org/example-complex-scenario-hub",
-    "hub_models": [
-        {
-            "team_abbr": "complex_hub",
-            "model_abbr": "ensemble",
-            "model_type": "ensemble"
-        }
-    ],
+    "repository": {
+        "host": "github",
+        "owner": "hubverse-org",
+        "name": "example-complex-scenario-hub"
+    },
     "file_format": ["csv", "parquet"],
     "timezone": "US/Eastern",
     "model_output_dir": "model-output"
