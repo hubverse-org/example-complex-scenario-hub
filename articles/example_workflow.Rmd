@@ -1,7 +1,7 @@
 ---
 title: "Workflow Example"
 date: "2023-11-14"
-output: pdf_document
+output: html_document
 ---
 
 ```{r, include = FALSE}
@@ -45,10 +45,10 @@ knitr::opts_chunk$set(margin = TRUE, prompt = TRUE, comment = "",
 To use full administrator functionality please ensure you install full list of
 package dependencies including Suggests with:
 ```{r install, eval=FALSE}
-remotes::install_github("Infectious-Disease-Modeling-Hubs/hubAdmin")
-remotes::install_github("Infectious-Disease-Modeling-Hubs/hubData")
-remotes::install_github("Infectious-Disease-Modeling-Hubs/hubEnsembles")
-remotes::install_github("Infectious-Disease-Modeling-Hubs/hubVis")
+remotes::install_github("hubverse-org/hubAdmin")
+remotes::install_github("hubverse-org/hubData")
+remotes::install_github("hubverse-org/hubEnsembles")
+remotes::install_github("hubverse-org/hubVis")
 ```
 
 ```{r setup, message=FALSE}
@@ -69,9 +69,9 @@ hub_path <- getwd()
 ## Setup a repository
 
 See vignette 
-["hub-setup"](https://github.com/Infectious-Disease-Modeling-Hubs/hubAdmin/blob/main/vignettes/articles/hub-setup.Rmd) 
+["hub-setup"](https://github.com/hubverse-org/hubAdmin/blob/main/vignettes/articles/hub-setup.Rmd) 
 in the 
-[hubAdmin package](https://infectious-disease-modeling-hubs.github.io/hubAdmin/index.html)
+[hubAdmin package](https://hubverse-org.github.io/hubAdmin/index.html)
 
 Create the config files: `hub-config/admin.json` and `hub_config/tasks.json` and validate them:
 
@@ -102,7 +102,7 @@ head(round1)
 ## Calculate ensemble
 
 See 
-[hubEnsembles package](https://infectious-disease-modeling-hubs.github.io/hubEnsembles/index.html)
+[hubEnsembles package](https://hubverse-org.github.io/hubEnsembles/index.html)
 for more information
 
 
@@ -116,7 +116,7 @@ head(round1_ens)
 ## Plot
 
 See 
-[hubVis package](https://infectious-disease-modeling-hubs.github.io/hubVis/index.html)
+[hubVis package](https://hubverse-org.github.io/hubVis/index.html)
 for more information
 
 ##### Data processing:
