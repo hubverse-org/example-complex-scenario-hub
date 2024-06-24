@@ -63,7 +63,7 @@ library(dplyr)
 
 ```{r prerequisite}
 # Store the path of the hub
-hub_path <- getwd()
+hub_path <- "."
 ```
 
 ## Setup a repository
@@ -95,7 +95,7 @@ hub_con
 # Round 1 for example
 round1 <- hub_con %>%
   dplyr::filter(origin_date == as.Date("2021-03-07")) %>%
-  dplyr::collect()
+  hubData::collect_hub()
 head(round1)
 ```
 
