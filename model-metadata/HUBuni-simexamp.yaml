@@ -14,7 +14,7 @@ website_url: "https://www.model-example.website"
 license: "CC-BY-4.0"
 model_details: [
   {
-   "data_inputs": ""
+   "data_inputs": "",
    "methods": ""
   }
 ]
