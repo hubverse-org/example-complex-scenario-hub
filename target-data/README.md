@@ -1,7 +1,7 @@
 # Target data
 
 This folder could be used to store target data (ground truth) relevant to the 
-modeling efforts, following the recommended [target data guidelines in our documentation](https://hubdocs.readthedocs.io/en/latest/format/target-data.html).
+modeling efforts, following the recommended [target data guidelines in our documentation](https://hubverse.io/en/latest/format/target-data.html).
 
 In this repository, we use different examples files:
 
