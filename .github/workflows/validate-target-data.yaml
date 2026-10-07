@@ -1,0 +1,31 @@
+name: Hub Target Data Validation (R)
+
+# Validates the target data files a pull request adds or changes and posts the
+# result on that pull request. Added with:
+#
+#   hubCI::use_hub_github_action("validate-target-data")
+
+on:
+  pull_request:
+    branches: main
+    paths:
+      - 'target-data/time-series.*'
+      - 'target-data/time-series/**'
+      - 'target-data/oracle-output.*'
+      - 'target-data/oracle-output/**'
+      - '!**/README'
+      - '!**/README.*'
+      - '!**/readme'
+      - '!**/readme.*'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate-target-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: hubverse-org/hubverse-actions/validate-target-data@v2
