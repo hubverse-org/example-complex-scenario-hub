@@ -1,0 +1,38 @@
+name: Hub Submission Validation (R)
+
+# Validates the model output and model metadata files in a pull request and
+# saves the result. The companion workflow, validate-submission-comment, posts
+# the result on the pull request once this one finishes. Both are added with:
+#
+#   hubCI::use_hub_github_action("validate-submission")
+#
+# The companion finds this workflow by the `name:` above. Renaming one without
+# the other stops results being posted.
+
+on:
+  pull_request:
+    branches: main
+    paths:
+      - 'model-output/**'
+      - 'model-metadata/*'
+      - '!**README**'
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  validate-submission:
+    # A fork's own copy of the hub does not need validating.
+    if: github.event.repository.fork != true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: hubverse-org/hubverse-actions/validate-submission@v2
+        with:
+          summary: true
+          skip_submit_window_check: true
+          # Install packages that custom validation checks need, one per line:
+          # extra_packages: |
+          #   any::mycustompkg
